@@ -19,7 +19,6 @@ public class PersonResource {
     @Autowired
     PersonDao personDao;
 
-
     @RequestMapping(method = RequestMethod.GET)
     public List<Person> getAllPerson() {
         return personDao.findAll();
