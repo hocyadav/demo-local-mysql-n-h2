@@ -48,7 +48,6 @@ public class PersonDao2{// this class same as DAO class but using hibernate to e
         return Optional.ofNullable(person);
     }
 
-
     //  working
     public void deleteById(Integer id) {
         System.err.println("PersonDao2.deleteById");
