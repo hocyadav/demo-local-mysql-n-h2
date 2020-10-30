@@ -23,13 +23,13 @@ import lombok.ToString;
 @Entity
 @ToString
 @JsonInclude (JsonInclude.Include.NON_EMPTY)//while fectching value in postman , ignore field with null
-public class Person {
+public class Person {//mysql entity same as h2
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     int personId;
     String name;
     Double salary;
 
-    @Convert(converter = ConvertorClass.class)//working
+    @Convert (converter = ConvertorClass.class)//working
     List<String> personList = new ArrayList<>();
 }
