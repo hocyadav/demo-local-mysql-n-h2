@@ -1,0 +1,14 @@
+##working
+## datasource config
+#spring:
+#  datasource:
+#    username: root
+#    password: password
+#    url: jdbc:mysql://localhost:3306/local_database
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  # hubernate config
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
