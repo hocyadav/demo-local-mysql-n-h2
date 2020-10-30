@@ -26,7 +26,7 @@ import lombok.ToString;
  * @since 30/10/20
  */
 @RestController
-@RequestMapping("/v1")
+@RequestMapping ("/v1")
 public class PersonResource {
     @Autowired
     PersonDao personDao;
@@ -35,22 +35,39 @@ public class PersonResource {
     PersonDao2 personDao2;
 
     @Transactional //else we will get exception at run time
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping (method = RequestMethod.GET)
     public List<Person> getAllPerson() {
-//        return personDao.findAll();// execute query using JPA
+        //        return personDao.findAll();// execute query using JPA
         return personDao2.findAll(); //execute query using hibernate
     }
 
     @Transactional
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping (method = RequestMethod.POST)
     public Person getOnePerson(@RequestBody Person person) {
-        return personDao.save(person);
+        //        return personDao.save(person);// JPA
+        return personDao2.save(person);//hibernate entity manager
     }
 
     @Transactional
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Optional<Person> getOnePerson(@PathVariable("id") Integer id) {
-        return personDao.findById(id);
+    @RequestMapping (value = "/{id}", method = RequestMethod.GET)
+    public Optional<Person> getOnePerson(@PathVariable ("id") Integer id) {
+        //        return personDao.findById(id);//JPA
+        return personDao2.findById(id);//Hibernate entity manager
+    }
+
+    @Transactional
+    @RequestMapping (value = "/{id}", method = RequestMethod.DELETE)
+    public void deletePersonById(@PathVariable ("id") Integer id) {
+        final Optional<Person> byId = personDao.findById(id);
+        if (byId.isPresent()) {
+            personDao.deleteById(id);
+        }
+    }
+
+    @Transactional
+    @RequestMapping (value = "/em/{id}", method = RequestMethod.DELETE)
+    public void deletePersonByIdEM(@PathVariable ("id") Integer id) {
+        personDao2.deleteById(id); // working
     }
 
 }

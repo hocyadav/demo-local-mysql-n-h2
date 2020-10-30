@@ -1,6 +1,7 @@
 package com.example.demomysql;
 
 import java.util.List;
+import java.util.Optional;
 import javax.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -27,5 +28,33 @@ public class PersonDao2{// this class same as DAO class but using hibernate to e
         // get result
         final List<Person> resultList = from_person.getResultList();
         return resultList;
+    }
+
+    public Person save(Person person) {
+        System.err.println("PersonDao2.save");
+        final Session currentSession = entityManager.unwrap(Session.class);
+        //save to db
+        currentSession.save(person);
+
+        //optional : get data from db and return
+        final int personId = person.getPersonId();
+        return currentSession.get(Person.class, personId);
+    }
+
+    public Optional<Person> findById(Integer id) {
+        System.err.println("PersonDao2.findById");
+        final Session currentSession = entityManager.unwrap(Session.class);
+        final Person person = currentSession.get(Person.class, id);
+        return Optional.ofNullable(person);
+    }
+
+
+    //  working
+    public void deleteById(Integer id) {
+        System.err.println("PersonDao2.deleteById");
+        final Session currentSession = entityManager.unwrap(Session.class);
+        final Person person = currentSession.get(Person.class, id);
+        currentSession.delete(person);
+        currentSession.close();
     }
 }
