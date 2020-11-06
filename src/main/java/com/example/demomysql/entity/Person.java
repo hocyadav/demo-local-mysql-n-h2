@@ -1,4 +1,4 @@
-package com.example.demomysql;
+package com.example.demomysql.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import com.example.demomysql.ConvertorClass;
+import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,4 +33,7 @@ public class Person {//mysql entity same as h2
 
     @Convert (converter = ConvertorClass.class)//working
     List<String> personList = new ArrayList<>();
+
+    @OneToMany
+    List<Location> locationList = new ArrayList<>();
 }

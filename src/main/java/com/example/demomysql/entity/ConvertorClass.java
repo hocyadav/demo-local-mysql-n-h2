@@ -1,4 +1,4 @@
-package com.example.demomysql;
+package com.example.demomysql.entity;
 
 import java.util.Arrays;
 import java.util.List;

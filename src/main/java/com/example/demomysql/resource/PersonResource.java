@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.demomysql.entity.Person;
 
 /**
  * @author HariomYadav
@@ -26,22 +27,22 @@ public class PersonResource {
     @Transactional //else we will get exception at run time
     @RequestMapping (method = RequestMethod.GET)
     public List<Person> getAllPerson() {
-                return personDao.findAll();// execute query using JPA
-//        return personDao2.findAll(); //execute query using hibernate
+//                return personDao.findAll();// execute query using JPA
+        return personDao2.findAll(); //execute query using hibernate
     }
 
     @Transactional
     @RequestMapping (method = RequestMethod.POST)
     public Person getOnePerson(@RequestBody Person person) {
-                return personDao.save(person);// JPA
-//        return personDao2.save(person);//hibernate entity manager
+//                return personDao.save(person);// JPA
+        return personDao2.save(person);//hibernate entity manager
     }
 
     @Transactional
     @RequestMapping (value = "/{id}", method = RequestMethod.GET)
     public Optional<Person> getOnePerson(@PathVariable ("id") Integer id) {
-                return personDao.findById(id);//JPA
-//        return personDao2.findById(id);//Hibernate entity manager
+//                return personDao.findById(id);//JPA
+        return personDao2.findById(id);//Hibernate entity manager
     }
 
     @Transactional
