@@ -1,4 +1,4 @@
-package com.example.demomysql;
+package com.example.demomysql.dao;
 
 import java.util.List;
 import java.util.Optional;

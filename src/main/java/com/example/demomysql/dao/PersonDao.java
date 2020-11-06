@@ -1,4 +1,4 @@
-package com.example.demomysql;
+package com.example.demomysql.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
