@@ -20,4 +20,11 @@ public class Product {
     int id;
 
     String productName;
+
+//    //1:M
+//    @OneToMany
+//    @JoinColumn(name = "one_to_many_own2")
+//    List<ProductTags> productList;
+
+    //M:1
 }

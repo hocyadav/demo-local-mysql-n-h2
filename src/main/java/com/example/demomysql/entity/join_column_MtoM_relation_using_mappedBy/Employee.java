@@ -33,6 +33,6 @@ public class Employee {
 //    private List<Email> emails;
 
     //working - not create 3rd table , mapped by value ?? - i tried changing table name n not eorking, check for maped by ??
-    @OneToMany (fetch = FetchType.LAZY, mappedBy = "employee")
+    @OneToMany (fetch = FetchType.LAZY, mappedBy = "employee")//mappedby takes input as bean name
     private List<Email> emails;
 }
